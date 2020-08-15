@@ -5,14 +5,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B"
-        crossorigin="anonymous">
-    <title>Todo Gits</title>
+    <link rel="stylesheet" href="../simple-todoapp/output.css">
+    <title>Todo App</title>
 </head>
 
 <body>
-    <div id="todoApp">
-        <h3>{{message}}</h3>
+    <div class="container mx-auto mt-10" id="todoApp">
+        <form class="w-full max-w-sm" method="POST" name="todo-form" v-on:submit.prevent="newTask">
+            <div class="flex items-center border-b border-teal-500 py-2">
+              <input name="add-task" v-model="addTaskInput" v-bind:class="{error: hasError}" class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none" type="text" placeholder="Minum Air">
+              <button class="flex-shrink-0 bg-teal-500 hover:bg-teal-700 border-teal-500 hover:border-teal-700 text-sm border-4 text-white py-1 px-2 rounded" type="submit">
+                Add Task
+              </button>
+            </div>
+        </form>
+        <div class="task-lists" v-if="lists.length">
+            <h3>Todo Tasks</h3>
+            <ul class="list-decimal text-xl">
+                <li class="max-w-sm border-b border-teal-500 py-2" v-for="(list, index) in lists" :key="list.id">
+                    <input type="checkbox" v-bind:id="'todo-' + index" v-on:change="completeTask($event, list)" v-bind:checked="list.isComplete" name="" id="">
+                    <span class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none" contenteditable="true" v-on:keydown.enter="updateTask($event, list)" v-on:blur="updateTask($event, list)" v-bind:class="{completed: list.isComplete}">
+                        {{list.title}}
+                    </span>
+                    <button class="flex-shrink-0 border-transparent border-4 text-teal-500 hover:text-teal-800 text-sm py-1 px-2 rounded" type="submit" v-on:click="removeTask(index)">
+                        Delete
+                    </button>
+                </li>  
+            </ul>
+        </div>
+        <!-- <h3>{{message}}</h3>
         <form action="" method="post" name="todo-form" v-on:submit.prevent="newTask">
             <input type="text" name="add-task" v-model="addTaskInput" v-bind:class="{error: hasError}" id="">
             <button type="submit">Add Task</button>
@@ -30,7 +51,7 @@
                     </span>
                 </li>
             </ul>
-        </div>
+        </div> -->
     </div>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/0.10.0/lodash.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
