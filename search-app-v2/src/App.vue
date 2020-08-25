@@ -1,6 +1,7 @@
 <template>
   <div class="container mx-auto mt-10" id="app">
-    <img class="mx-auto" alt="Vue logo" src="./assets/logo.png">
+    <!-- <img class="mx-auto" alt="Vue logo" src="./assets/logo.png"> -->
+    <img class="mx-auto" alt="Vue logo" src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQZE46RaWqc4512Ddjw6KHE2xVD-EjUW8rutg&usqp=CAU">
     <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
     <!-- <button @click="checkData">Check</button> -->
     <SearchBox @new-search="newSearch" />
