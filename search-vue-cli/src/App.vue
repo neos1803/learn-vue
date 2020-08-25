@@ -3,7 +3,7 @@
     <img class="mx-auto" alt="Vue logo" src="./assets/logo.png">
     <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
     <SearchBox :message="message" @new-search="newSearch"/>
-    <FilteredList :filteredList="filteredList"/>
+    <FilteredList :selectedList="selectedList" :filteredList="filteredList" @click="addItem"/>
     <UnfilteredList :list="list"/>
   </div>
 </template>
@@ -21,6 +21,7 @@ export default {
     return {
       message: "",
       searchValue: "",
+      selectedList: [],
       filteredList: [],
       list: [
             {
@@ -385,15 +386,21 @@ export default {
   },
   
   methods: {
-    newSearch(e) {
-      const newList = [...this.list];
+    newSearch(e) {  
+      // const newList = [...this.list];
       if (e.length > 2){
-        this.message = "Sedang Mencari..."
-        this.filteredList = newList.filter(val => val.title.includes(e))
+        // this.message = "Sedang Mencari..."
+        this.filteredList = this.list.filter(val => val.title.includes(e))
       } else {
         this.message = ""
         this.filteredList = []
       }
+    },
+    addItem(e) {
+      this.selectedList.push(e)
+      this.list = this.list.filter(val => val.id != e.id)
+      this.filteredList = this.filteredList.filter(val => val.id != e.id)
+      console.log(this.selectedList)
     }
   }
 }

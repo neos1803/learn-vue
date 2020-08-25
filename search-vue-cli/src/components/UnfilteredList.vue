@@ -1,5 +1,7 @@
 <template>
-    <div class="grid grid-cols-3 grid-rows-3 gap-4">
+    <div>
+        <h1>All Items</h1>
+        <div class="grid grid-cols-3 grid-rows-3 gap-4">
             <div class="unfiltered-list" v-for="l in this.list" :key="l">
                 <div class="max-w-sm rounded overflow-hidden shadow-lg">
                     <a v-bind:href="l.url">
@@ -13,7 +15,8 @@
                     </a>
                 </div>
             </div>
-        </div>
+    </div>
+    </div>
 </template>
 
 <script>
