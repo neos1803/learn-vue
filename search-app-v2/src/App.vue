@@ -5,7 +5,7 @@
     <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
     <!-- <button @click="checkData">Check</button> -->
     <SearchBox @new-search="newSearch" />
-    <List title="Selected Product" :data="selected" />
+    <List title="Selected Product" :data="selected" :isAdded="isAdded" @click="removeItems"/>
     <List title="Searched Product" :data="searched" @click="addItems" />
     <List title="All Product" :data="products" @click="addItems" />
   </div>
@@ -76,9 +76,11 @@ export default {
           "price": 35000
         },
       ],
+      checkValue: [],
       selected: [],
       searched: [],
       search: "",
+      isAdded: "",
     }
   },
   components: {
@@ -92,7 +94,22 @@ export default {
       console.log(this.searched)
     },
     addItems(e) {
-      this.selected.push(e)
+      this.checkValue = this.selected.filter(val => val.name == e.name)
+      if (this.checkValue.length > 0) {
+        this.$confirm("Item already exist, want to add again?").then(() => {
+          this.selected.push(e)
+          this.isAdded = true
+        })
+      } else{
+        this.$confirm("Add this item?").then(() => {
+          this.selected.push(e)
+          this.isAdded = true
+        })
+      }
+    },
+    removeItems(e) {
+      // this.selected = this.selected.filter(val => val.name != e.name)
+      this.selected.splice(this.selected.indexOf(e), 1)
     }
     // checkData() {
     //   console.log(this.products)

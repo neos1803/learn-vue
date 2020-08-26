@@ -6,5 +6,3 @@ import Vue from "vue"
 // })
 
 Vue.filter("price-filter", (data) => new Intl.NumberFormat("id-ID", { style: "currency", currency: "IDR" }).format(data))
-
-// Vue.filter('currency', (data) => new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR' }).format(data))
