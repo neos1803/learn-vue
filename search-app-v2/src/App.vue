@@ -90,16 +90,17 @@ export default {
   },
   methods: {
     newSearch(e) {
-      this.searched = this.products.filter(val => val.name.toLowerCase().includes(e.toLowerCase()))
-      console.log(this.searched)
+      if (e.length == 0) {
+        this.searched = []
+      } else {
+        this.searched = this.products.filter(val => val.name.toLowerCase().includes(e.toLowerCase()))
+        console.log(this.searched)
+      }
     },
     addItems(e) {
       this.checkValue = this.selected.filter(val => val.name == e.name)
       if (this.checkValue.length > 0) {
-        this.$confirm("Item already exist, want to add again?").then(() => {
-          this.selected.push(e)
-          this.isAdded = true
-        })
+        this.$alert("Item already exist")
       } else{
         this.$confirm("Add this item?").then(() => {
           this.selected.push(e)
