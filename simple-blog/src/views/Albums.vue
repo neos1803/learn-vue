@@ -1,15 +1,13 @@
 <template>
-    <div class="album flex">
-        <div class="container w-4/6 my-8 mx-8">
+    <div class="album w-4/6 my-8 mx-8">
+        <div class="">
             <Content :data="albums" :isAlbum="isAlbum" />
             <!-- <v-paginator :resource_url="resource_url" @update="updateResource"> </v-paginator> -->
         </div>
-        <side-bar />
     </div>
 </template>
 
 <script>
-import SideBar from '../components/SideBar.vue'
 import Content from '../components/Content.vue'
 // import VuePaginator from "vuejs-paginator"
 
@@ -23,7 +21,6 @@ export default {
         }
     },
     components: {
-        SideBar,
         Content,
         // VPaginator: VuePaginator
     },

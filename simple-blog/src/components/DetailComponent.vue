@@ -2,7 +2,7 @@
     <div>
         <img class="mx-auto h-64" v-bind:src="this.new.url">
         <p class="text-gray-900 font-bold text-xl my-4">{{this.new.title}}</p>
-        <p class="text-gray-700 text-sm">Post Number: {{this.new.id}}</p>
+        <p class="text-gray-700 text-sm">{{this.$route.name}} Number: {{this.new.id}}</p>
         <p class="text-gray-700 text-base mt-8">{{this.new.body}}</p>
     </div>
 </template>
