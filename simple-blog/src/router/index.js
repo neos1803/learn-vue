@@ -1,10 +1,10 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
-import Post from '../views/Post.vue'
-import Photo from '../views/Photos.vue'
-import Album from '../views/Albums.vue'
-import Detail from '../views/Detail.vue'
+// import Home from '../views/Home.vue'
+// import Post from '../views/Post.vue'
+// import Photo from '../views/Photos.vue'
+// import Album from '../views/Albums.vue'
+// import Detail from '../views/Detail.vue'
 
 // import SideBar from '../components/SideBar.vue'
 
@@ -14,12 +14,27 @@ Vue.use(VueRouter)
   {
     path: '/',
     name: 'Home',
-    component: Home,
+    component: () => 
+      import(/* webpackChunkName: "home" */ "../views/Home.vue"),
   },
   {
     path: "/post",
     name: "Post",
-    component: Post,
+    components: {
+      default: () =>
+        import(/* webpackChunkName: "post" */ "../views/Post.vue"),
+      popular: () =>
+        import(/* webpackChunkName: "popular-post" */ "../components/widgets/Popular.vue")
+    },
+    beforeEnter: (to, from, next) => {
+      
+      let auth = prompt("Authenticate yourself!");
+      while(auth != "admin"){
+        next({ name: "Home" });
+        return
+      }
+      next();
+    },
     // children: [
     //   {
     //     path: "detail/:id",
@@ -31,7 +46,19 @@ Vue.use(VueRouter)
   {
     path: "/post/detail/:id",
     name: "Post Detail",
-    component: Detail,
+    components: {
+      default: () =>
+        import(/* webpackChunkName: "detail-post" */ "../views/Detail.vue"),
+    },
+    beforeEnter: (to, from, next) => {
+      
+      let auth = prompt("Authenticate yourself!");
+      while(auth != "admin"){
+        next({ name: "Post" });
+        return
+      }
+      next();
+    },
     // children: [
     //   {
     //     path: "detail/:id",
@@ -43,7 +70,12 @@ Vue.use(VueRouter)
   {
     path: "/photo",
     name: "Photo",
-    component: Photo,
+    components: {
+      default: () =>
+        import(/* webpackChunkName: "photo" */ "../views/Photos.vue"),
+      popular: () =>
+        import(/* webpackChunkName: "popular-photo" */ "../components/widgets/Popular.vue")
+    }
     // children: [
     //   {
     //     path: "detail",
@@ -55,7 +87,10 @@ Vue.use(VueRouter)
   {
     path: "/photo/detail/:id",
     name: "Photo Detail",
-    component: Detail,
+    components: {
+      default: () =>
+        import(/* webpackChunkName: "detail-photo" */ "../views/Detail.vue"),
+    },
     // children: [
     //   {
     //     path: "detail/:id",
@@ -67,7 +102,12 @@ Vue.use(VueRouter)
   {
     path: "/album",
     name: "Album",
-    component: Album,
+    components: {
+      default: () =>
+        import(/* webpackChunkName: "album" */ "../views/Albums.vue"),
+      popular: () =>
+        import(/* webpackChunkName: "popular-album" */ "../components/widgets/Popular.vue")
+    }
     // children: [
     //   {
     //     path: "detail",
@@ -79,7 +119,10 @@ Vue.use(VueRouter)
   {
     path: "/album/detail/:id",
     name: "Album Detail",
-    component: Detail,
+    components: {
+      default: () =>
+        import(/* webpackChunkName: "detail-album" */ "../views/Detail.vue"),
+    },
     // children: [
     //   {
     //     path: "detail/:id",
@@ -91,6 +134,8 @@ Vue.use(VueRouter)
 ]
 
 const router = new VueRouter({
+  mode: "history",
+  base: process.env.BASE_URL,
   routes
 })
 
