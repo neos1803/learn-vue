@@ -3,13 +3,13 @@
         <div class="">
             <!-- <router-link :to="'/photo/detail/'">Read More</router-link> -->
             <!-- <Content :data="photos" :isPhoto="isPhoto" /> -->
-            <div v-if="isPost">
+            <div v-if="route == 'Post Detail'">
                 <detail-component :data="posts" />
             </div>
-            <div v-else-if="isAlbum">
+            <div v-if="route == 'Album Detail'">
                 <detail-component :data="albums" />
             </div>
-            <div v-else-if="isPhoto">
+            <div v-if="route == 'Photo Detail'">
                 <detail-component :data="photos" />
             </div>
             <!-- <v-paginator :resource_url="resource_url" @update="updateResource"> </v-paginator> -->
@@ -26,7 +26,7 @@ import DetailComponent from '../components/DetailComponent.vue'
 
 export default {
     name: "Detail",
-    props: ["photos", "posts", "albums", "isAlbum", "isPhoto", "isPost"],
+    props: ["photos", "posts", "albums", "route"],
     data() {
         return {
             // resource_url: "../data/posts.js"
@@ -41,6 +41,9 @@ export default {
         // updateResource(data) {
         //     this.posts = data
         // }
+    },
+    created() {
+        console.log(this.route)
     }
 }
 </script>

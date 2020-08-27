@@ -15,7 +15,7 @@
             <div class="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
                 <!-- Route Link -->
                 <div class="text-sm lg:flex-grow" v-for="link in links" v-bind:key="link.id">
-                    <div @click="checkStatus(link.text)">
+                    <div >
                         <router-link :to="{ name: `${link.text}`}" class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4">
                             {{link.text}}
                         </router-link>
@@ -59,9 +59,9 @@ export default {
         }
     },
     methods: {
-        checkStatus(e) {
-            this.$emit("click", e)
-        }
+        // checkStatus(e) {
+        //     this.$emit("click", e)
+        // }
     }
 }
 </script>
