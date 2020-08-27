@@ -1,15 +1,15 @@
 <template>
-    <div class="post flex">
-        <div class="container w-4/6 my-8 mx-8">
+    <div class="container w-4/6 my-8 mx-8">
+        <div class="">
             <Content :data="posts" :isPost="isPost" />
             <!-- <v-paginator :resource_url="resource_url" @update="updateResource"> </v-paginator> -->
         </div>
-        <side-bar />
+        <!-- <side-bar /> -->
     </div>
 </template>
 
 <script>
-import SideBar from '../components/SideBar.vue'
+// import SideBar from '../components/SideBar.vue'
 import Content from '../components/Content.vue'
 // import VuePaginator from "vuejs-paginator"
 
@@ -23,7 +23,7 @@ export default {
         }
     },
     components: {
-        SideBar,
+        // SideBar,
         Content,
         // VPaginator: VuePaginator
     },

@@ -1,6 +1,6 @@
 <template>
-    <div class="detail flex">
-        <div class="container w-4/6 my-8 mx-8">
+    <div class="container w-4/6 my-8 mx-8">
+        <div class="">
             <!-- <router-link :to="'/photo/detail/'">Read More</router-link> -->
             <!-- <Content :data="photos" :isPhoto="isPhoto" /> -->
             <div v-if="isPost">
@@ -14,13 +14,11 @@
             </div>
             <!-- <v-paginator :resource_url="resource_url" @update="updateResource"> </v-paginator> -->
         </div>
-        <side-bar />
         <!-- <router-view></router-view> -->
     </div>
 </template>
 
 <script>
-import SideBar from '../components/SideBar.vue'
 import DetailComponent from '../components/DetailComponent.vue'
 // import Content from '../components/Content.vue'
 // import VuePaginator from "vuejs-paginator"
@@ -35,7 +33,6 @@ export default {
         }
     },
     components: {
-        SideBar,
         DetailComponent
         // Content,
         // VPaginator: VuePaginator

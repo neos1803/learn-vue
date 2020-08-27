@@ -1,13 +1,16 @@
 <template>
   <div id="app">
     <nav-bar @click="checkStatus" />
-    <router-view :posts="posts" :photos="photos" 
+    <div class="flex">
+      <router-view :posts="posts" :photos="photos" 
           :albums="albums" 
           :isPost="isPost"
           :isPhoto="isPhoto"
           :isAlbum="isAlbum"
           >
-    </router-view>
+      </router-view >
+      <side-bar />
+    </div>
     <Footer />
   </div>
 </template>
@@ -15,7 +18,7 @@
 <script>
 import NavBar from './components/NavBar.vue'
 import Footer from './components/Footer.vue'
-// import SideBar from './components/SideBar.vue'
+import SideBar from './components/SideBar.vue'
 
 import posts from './data/posts'
 import photos from './data/photos'
@@ -36,8 +39,8 @@ export default {
   },
   components: {
     NavBar,
-    Footer
-    // SideBar
+    Footer,
+    SideBar
   },
   methods: {
     checkStatus(e) {
