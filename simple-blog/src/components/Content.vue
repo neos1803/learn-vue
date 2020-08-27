@@ -11,17 +11,17 @@
                                 <p class="text-gray-700 text-base">{{d.body}}</p>
                             </div>
                             <button>
-                                <div v-if="isPost">
+                                <div v-if="route == 'Post'">
                                     <router-link :to="'/post/detail/'+d.id">
                                         Read More
                                     </router-link>
                                 </div>
-                                <div v-else-if="isPhoto">
+                                <div v-if="route == 'Photo'">
                                     <router-link :to="'/photo/detail/'+d.id">
                                         Read More
                                     </router-link>
                                 </div>
-                                <div v-else-if="isAlbum">
+                                <div v-if="route == 'Album'">
                                     <router-link :to="'/album/detail/'+d.id">
                                         Read More
                                     </router-link>
@@ -47,7 +47,7 @@ import albums from '../data/albums'
 
 export default {
     name: "Content",
-    props: ["data", "isAlbum", "isPhoto", "isPost"],
+    props: ["data", "route"],
     data() {
         return {
             posts: posts,
@@ -55,6 +55,9 @@ export default {
             albums: albums,
             paginate: ["items"]
         }
+    },
+    created() {
+        console.log(this.route)
     }
 }
 </script>

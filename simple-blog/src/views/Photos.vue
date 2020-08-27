@@ -2,7 +2,7 @@
     <div class="container w-4/6 my-8 mx-8">
         <div class="">
             <!-- <router-link :to="'/photo/detail/'">Read More</router-link> -->
-            <Content :data="photos" :isPhoto="isPhoto" />
+            <Content :data="photos" :route="route" />
             <!-- <v-paginator :resource_url="resource_url" @update="updateResource"> </v-paginator> -->
         </div>
         <!-- <router-view></router-view> -->
@@ -16,7 +16,7 @@ import Content from '../components/Content.vue'
 
 export default {
     name: "Photo",
-    props: ["photos", "isPhoto"],
+    props: ["photos", "route"],
     data() {
         return {
             // resource_url: "../data/posts.js"

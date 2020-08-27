@@ -1,12 +1,10 @@
 <template>
   <div id="app">
-    <nav-bar @click="checkStatus" />
+    <nav-bar />
     <div class="flex">
       <router-view :posts="posts" :photos="photos" 
           :albums="albums" 
-          :isPost="isPost"
-          :isPhoto="isPhoto"
-          :isAlbum="isAlbum"
+          :route="this.$route.name"
           >
       </router-view >
       <side-bar />
@@ -32,9 +30,9 @@ export default {
       photos: photos,
       albums: albums,
       // isHome: true,
-      isPost: false,
-      isPhoto: false,
-      isAlbum: false
+      // isPost: false,
+      // isPhoto: false,
+      // isAlbum: false
     }
   },
   components: {
@@ -43,21 +41,21 @@ export default {
     SideBar
   },
   methods: {
-    checkStatus(e) {
-      if(e == "Post") {
-        this.isPost = true
-        this.isPhoto = false
-        this.isAlbum = false
-      } else if (e == "Photo") {
-        this.isPhoto = true
-        this.isAlbum = false
-        this.isPost = false
-      } else if(e == "Album") {
-        this.isPhoto = false
-        this.isAlbum = true
-        this.isPost = false
-      }
-    }
+    // checkStatus(e) {
+    //   if(e == "Post") {
+    //     this.isPost = true
+    //     this.isPhoto = false
+    //     this.isAlbum = false
+    //   } else if (e == "Photo") {
+    //     this.isPhoto = true
+    //     this.isAlbum = false
+    //     this.isPost = false
+    //   } else if(e == "Album") {
+    //     this.isPhoto = false
+    //     this.isAlbum = true
+    //     this.isPost = false
+    //   }
+    // }
   }
 }
 </script>

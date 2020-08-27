@@ -1,7 +1,7 @@
 <template>
     <div class="container w-4/6 my-8 mx-8">
         <div class="">
-            <Content :data="posts" :isPost="isPost" />
+            <Content :data="posts" :route="route" />
             <!-- <v-paginator :resource_url="resource_url" @update="updateResource"> </v-paginator> -->
         </div>
         <!-- <side-bar /> -->
@@ -16,7 +16,7 @@ import Content from '../components/Content.vue'
 
 export default {
     name: "Post",
-    props: ["posts", "isPost"],
+    props: ["posts", "route"],
     data() {
         return {
             // resource_url: "../data/posts.js"
